@@ -2,7 +2,7 @@
 import React from 'react';
 import Debug from 'debug';
 
-var debug = Debug('tau3:合成結果');
+var debug = Debug('kip4:合成結果');
 
 export default class 合成結果 extends React.Component {
 

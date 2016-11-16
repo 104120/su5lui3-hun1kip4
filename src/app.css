@@ -1,25 +1,11 @@
 
 body {
-  margin: 0;
+  margin: 0px;
   font-size: 350%;
 }
 
-.app.background {
-  display: flex;
-  flex-flow: column nowrap;
-  min-height: 100vh;
-}
-
 .app .container {
-  width: 960px;
-  margin: 0 auto;
-}
-
-.app .main.container {
-  display: flex;
-  flex-flow: row wrap;
-  flex-grow: 1;
-  align-content: flex-start;
+  margin: 0 10px;
 }
 
 .navigation {
@@ -29,6 +15,7 @@ body {
 
 .app .app.header {
   /*background: #fff;*/
+  margin: 10px;
 }
 
 .app .app.footer {
@@ -50,6 +37,9 @@ body {
   font-family: "MOEDICT", "FiraSansOT", sans-serif;
 }
 
-/*h2 {*/
-  /*color: rgba(251, 66, 75, 0.8);*/
-/*}*/
+textarea{
+  width:100%;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
