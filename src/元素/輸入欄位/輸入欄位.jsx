@@ -19,8 +19,9 @@ export default class 輸入欄位 extends React.Component {
   }
 
   render () {
+    let { 語句, 逝數 } = this.props;
     return (
-       <textarea ref='語句' defaultValue={this.props.語句} rows='5'/>
+       <textarea ref='語句' defaultValue={語句} rows={ 逝數}/>
     );
   }
 }
