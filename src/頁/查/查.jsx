@@ -39,7 +39,6 @@ export default class 查 extends React.Component {
     let { 逝數, 漢字, 臺羅 } = this.state;
     return (
       <div className='main container'>
-      {逝數}
         <div className="ui grid">
           <div className="seven wide column" key='1'>
               <輸入欄位 語句={漢字} 逝數={逝數}
