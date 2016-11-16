@@ -13,7 +13,7 @@ export default class 查 extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      逝數: 20,
+      逝數: 15,
       漢字: '逐家 做伙 來𨑨迌 ！',
       臺羅: 'ta̍k-ke tsò-hué lâi-tshit-thô ！',
     };
