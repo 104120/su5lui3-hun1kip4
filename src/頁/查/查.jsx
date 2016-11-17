@@ -14,21 +14,27 @@ export default class 查 extends React.Component {
     super(props);
     this.state = {
       逝數: 15,
+      所在: 0,
       漢字: '逐家 做伙 來𨑨迌 ！',
       臺羅: 'ta̍k-ke tsò-hué lâi-tshit-thô ！',
     };
   }
 
-  調漢字(漢字)
-  {
+  振動(textarea) {
+    let { target } = textarea;
+    let 總闊 = target.scrollWidth - target.clientWidth;
+    let 所在 = target.scrollLeft / 總闊;
+    this.setState({ 所在 });
+  }
+
+  調漢字(漢字) {
     this.setState({ 漢字 });
     let 這馬逝數 = 漢字.split('\n').length;
     if (這馬逝數 > this.state.逝數)
       this.setState({ 逝數: 這馬逝數 + 10 });
   }
 
-  調臺羅(臺羅)
-  {
+  調臺羅(臺羅) {
     this.setState({ 臺羅 });
     let 這馬逝數 = 臺羅.split('\n').length;
     if (這馬逝數 > this.state.逝數)
@@ -36,17 +42,19 @@ export default class 查 extends React.Component {
   }
 
   render () {
-    let { 逝數, 漢字, 臺羅 } = this.state;
+    let { 逝數, 所在, 漢字, 臺羅 } = this.state;
     return (
       <div className='main container'>
         <div className="ui grid">
           <div className="seven wide column" key='1'>
-              <輸入欄位 語句={漢字} 逝數={逝數}
-                輸入內容={this.調漢字.bind(this)} />
+            <輸入欄位 語句={漢字} 逝數={逝數}
+              所在={所在} 振動={this.振動.bind(this)}
+              輸入內容={this.調漢字.bind(this)} />
           </div>
           <div className="nine wide column" key='2'>
-              <輸入欄位 語句={臺羅} 逝數={逝數}
-                輸入內容={this.調臺羅.bind(this)} />
+            <輸入欄位 語句={臺羅} 逝數={逝數}
+              所在={所在} 振動={this.振動.bind(this)}
+              輸入內容={this.調臺羅.bind(this)} />
           </div>
         </div>
       </div>
