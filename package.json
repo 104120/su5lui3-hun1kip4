@@ -14,7 +14,8 @@
     "url": "https://github.com/sih4sing5hong5/tau3_phah4-ji7.git"
   },
   "keywords": [
-    "臺語","閩南語"
+    "臺語",
+    "閩南語"
   ],
   "author": "薛丞宏",
   "license": "MIT",
@@ -22,8 +23,7 @@
     "url": "https://github.com/sih4sing5hong5/tau3_phah4-ji7/issues"
   },
   "homepage": "http://xn--jny.xn--v0qr21b.xn--kpry57d/",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel-core": "^6.4.0",
     "babel-loader": "^6.2.1",
@@ -46,6 +46,7 @@
     "react": "^15.2.0",
     "react-dom": "^15.2.0",
     "react-hot-loader": "^1.3.0",
+    "react-modal": "^1.5.2",
     "react-router": "^2.5.2",
     "react-tabs": "^0.8.2",
     "strict-loader": "^1.1.0",
