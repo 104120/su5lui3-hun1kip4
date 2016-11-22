@@ -47,11 +47,13 @@ export default class 查 extends React.Component {
       <div className='main container'>
         <div className="ui grid">
           <div className="seven wide column" key='1'>
+            <label>臺語漢字</label>
             <輸入欄位 語句={漢字} 逝數={逝數}
               所在={所在} 振動={this.振動.bind(this)}
               輸入內容={this.調漢字.bind(this)} />
           </div>
           <div className="nine wide column" key='2'>
+            <label>臺羅</label>
             <輸入欄位 語句={臺羅} 逝數={逝數}
               所在={所在} 振動={this.振動.bind(this)}
               輸入內容={this.調臺羅.bind(this)} />
