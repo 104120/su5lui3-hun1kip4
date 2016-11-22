@@ -45,20 +45,37 @@ export default class 查 extends React.Component {
     let { 逝數, 所在, 漢字, 臺羅 } = this.state;
     return (
       <div className='main container'>
-        <div className="ui grid">
-          <div className="seven wide column" key='1'>
-            <label>臺語漢字</label>
-            <輸入欄位 語句={漢字} 逝數={逝數}
-              所在={所在} 振動={this.振動.bind(this)}
-              輸入內容={this.調漢字.bind(this)} />
+        <form className="ui form">
+          <div className="four fields">
+            <div className="field">
+              <label>原始檔</label><input type='file' name='原始檔'/>
+            </div>
+            <div className="field">
+              <label>編號</label><input type='text' placeholder="編號" name='編號'/>
+            </div>
+            <div className="field">
+             <label>文章名</label><input type='text' placeholder="文章名" name='文章名'/>
+            </div>
+            <div className="field">
+              <label>作者</label><input type='text' placeholder="作者" name='作者'/>
+            </div>
           </div>
-          <div className="nine wide column" key='2'>
-            <label>臺羅</label>
-            <輸入欄位 語句={臺羅} 逝數={逝數}
-              所在={所在} 振動={this.振動.bind(this)}
-              輸入內容={this.調臺羅.bind(this)} />
+          <div className="ui grid">
+            <div className="seven wide column" key='1'>
+              <label>臺語漢字</label>
+              <輸入欄位 語句={漢字} 逝數={逝數}
+                所在={所在} 振動={this.振動.bind(this)}
+                輸入內容={this.調漢字.bind(this)} />
+            </div>
+            <div className="nine wide column" key='2'>
+              <label>臺羅</label>
+              <輸入欄位 語句={臺羅} 逝數={逝數}
+                所在={所在} 振動={this.振動.bind(this)}
+                輸入內容={this.調臺羅.bind(this)} />
+            </div>
           </div>
-        </div>
+          <div className="ui submit button">送出</div>
+        </form>
       </div>
     );
   }
