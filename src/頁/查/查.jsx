@@ -15,6 +15,9 @@ export default class 查 extends React.Component {
     this.state = {
       逝數: 15,
       所在: 0,
+      編號: '',
+      文章名: '',
+      作者: '',
       漢字: '逐家 做伙 來𨑨迌 ！',
       臺羅: 'ta̍k-ke tsò-hué lâi-tshit-thô ！',
     };
@@ -25,6 +28,18 @@ export default class 查 extends React.Component {
     let 總闊 = target.scrollWidth - target.clientWidth;
     let 所在 = target.scrollLeft / 總闊;
     this.setState({ 所在 });
+  }
+
+  調編號(event) {
+    this.setState({ 編號: event.target.value });
+  }
+
+  調文章名(event) {
+    this.setState({ 文章名: event.target.value });
+  }
+
+  調作者(event) {
+    this.setState({ 作者: event.target.value });
   }
 
   調漢字(漢字) {
@@ -42,7 +57,7 @@ export default class 查 extends React.Component {
   }
 
   render () {
-    let { 逝數, 所在, 漢字, 臺羅 } = this.state;
+    let { 逝數, 所在, 編號, 文章名, 作者, 漢字, 臺羅 } = this.state;
     return (
       <div className='main container'>
         <form className="ui form">
@@ -51,13 +66,16 @@ export default class 查 extends React.Component {
               <label>原始檔</label><input type='file' name='原始檔'/>
             </div>
             <div className="field">
-              <label>編號</label><input type='text' placeholder="編號" name='編號'/>
+              <label>編號</label>
+              <input type='text' placeholder="編號" value={編號} onChange={this.調編號.bind(this)} name='編號'/>
             </div>
             <div className="field">
-             <label>文章名</label><input type='text' placeholder="文章名" name='文章名'/>
+             <label>文章名</label>
+             <input type='text' placeholder="文章名" value={文章名} onChange={this.調文章名.bind(this)} name='文章名'/>
             </div>
             <div className="field">
-              <label>作者</label><input type='text' placeholder="作者" name='作者'/>
+              <label>作者</label>
+              <input type='text' placeholder="作者" value={作者} onChange={this.調作者.bind(this)} name='作者'/>
             </div>
           </div>
           <div className="ui grid">
