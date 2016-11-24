@@ -60,7 +60,7 @@ export default class 拍書面 extends React.Component  {
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .set('X-CSRFToken', this.props.csrftoken)
       .send({ 漢字, 臺羅 })
-      .then((body)=>(debug('ok')))
+      .then((body)=>(alert('存檔好矣，無問題～～')))
       .catch(res => {
         window.open(this.props.後端網址 + 'accounts/facebook/login', '_blank');
       });
@@ -107,7 +107,7 @@ export default class 拍書面 extends React.Component  {
                 輸入內容={this.調臺羅.bind(this)} />
             </div>
           </div>
-          <div className="ui submit button" onClick={this.送出.bind(this)}>送出</div>
+          <div className="ui submit button" onClick={this.送出.bind(this)}>存檔</div>
         </form>
       </div>
     );
