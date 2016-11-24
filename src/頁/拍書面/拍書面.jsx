@@ -67,7 +67,7 @@ export default class 拍書面 extends React.Component  {
   }
 
   render () {
-    let { 逝數, 所在, 原始檔網址, 編號, 文章名, 作者, 漢字, 臺羅 } = this.state;
+    let { id,逝數, 所在, 原始檔網址, 編號, 文章名, 作者, 漢字, 臺羅 } = this.state;
     if (文章名 == undefined) {
       return (<載入中 />);
     }
@@ -75,7 +75,11 @@ export default class 拍書面 extends React.Component  {
     return (
       <div className='main container'>
         <form className="ui form">
-          <div className="four fields">
+          <div className="five fields">
+            <div className="field">
+              <label>流水號</label>
+              <input type='text' placeholder="流水號" value={id} readOnly='true' disabled='true'/>
+            </div>
             <div className="field">
               <label>原始檔</label>
               <a href={後端網址.原始檔案(原始檔網址)}>{原始檔網址.substring(原始檔網址.lastIndexOf('/') + 1)}</a>
