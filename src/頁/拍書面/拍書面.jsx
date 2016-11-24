@@ -41,6 +41,19 @@ export default class 拍書面 extends React.Component  {
       this.setState({ 逝數: 這馬逝數 + 10 });
   }
 
+  送出() {
+    let { 漢字, 臺羅 } = this.state;
+    superagent.post(後端網址.看書面(this.props.params.pian1ho7))
+      .withCredentials()
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('X-CSRFToken', this.props.csrftoken)
+      .send({ 漢字, 臺羅 })
+      .then((body)=>(debug('ok')))
+      .catch(res => {
+        window.open(this.props.後端網址 + 'accounts/facebook/login', '_blank');
+      });
+  }
+
   render () {
     let { 資料 } = this.state;
     if (資料 == undefined) {
@@ -83,7 +96,7 @@ export default class 拍書面 extends React.Component  {
                 輸入內容={this.調臺羅.bind(this)} />
             </div>
           </div>
-          <div className="ui submit button">送出</div>
+          <div className="ui submit button" onClick={this.送出.bind(this)}>送出</div>
         </form>
       </div>
     );
