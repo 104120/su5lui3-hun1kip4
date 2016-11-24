@@ -6,7 +6,6 @@ import ReactDOM from 'react-dom';
 import 後端網址 from '../後端網址';
 import 載入中 from '../../元素/載入中/載入中';
 import 輸入欄位 from '../../元素/輸入欄位/輸入欄位';
-import './拍書面.css';
 
 var debug = Debug('kip4:拍書面');
 
@@ -21,14 +20,14 @@ export default class 拍書面 extends React.Component  {
     superagent.get(後端網址.看書面(this.props.params.pian1ho7))
       .then(function ({ body }) {
         let { 資料 } = body;
-        let {漢字,臺羅}=資料 
+        let { 漢字, 臺羅 } = 資料;
         let 漢字逝數 = 漢字.split('\n').length;
         if (漢字逝數 > this.state.逝數)
-          資料.逝數= 漢字逝數 + 10 ;
+          資料.逝數 = 漢字逝數 + 10;
         let 臺羅逝數 = 臺羅.split('\n').length;
         if (臺羅逝數 > this.state.逝數)
-          資料.逝數= 臺羅逝數 + 10 ;
-        this.setState(資料)
+          資料.逝數 = 臺羅逝數 + 10;
+        this.setState(資料);
       }.bind(this))
       .catch((err) => (debug(err)));
   }

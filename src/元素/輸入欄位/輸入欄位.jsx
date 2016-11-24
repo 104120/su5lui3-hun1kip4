@@ -28,8 +28,9 @@ export default class 輸入欄位 extends React.Component {
   render () {
     let { 語句, 逝數, 袂當改 } = this.props;
     return (
-       <textarea ref='語句' defaultValue={語句} rows={逝數}
-         readOnly={袂當改} disabled={袂當改}
+       <textarea ref='語句'  className={袂當改 ? '袂當改' : '改'}
+         defaultValue={語句} rows={逝數}
+         readOnly={袂當改}
          onScroll={this.props.振動.bind(this)}/>
     );
   }

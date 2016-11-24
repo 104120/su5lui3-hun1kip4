@@ -18,7 +18,17 @@ export default class 看書面 extends React.Component {
       所在: 0,
     };
     superagent.get(後端網址.看書面(this.props.params.pian1ho7))
-      .then(({ body }) => (this.setState(body.資料)))
+      .then(function ({ body }) {
+        let { 資料 } = body;
+        let { 漢字, 臺羅 } = 資料;
+        let 漢字逝數 = 漢字.split('\n').length;
+        if (漢字逝數 > this.state.逝數)
+          資料.逝數 = 漢字逝數 + 10;
+        let 臺羅逝數 = 臺羅.split('\n').length;
+        if (臺羅逝數 > this.state.逝數)
+          資料.逝數 = 臺羅逝數 + 10;
+        this.setState(資料);
+      }.bind(this))
       .catch((err) => (debug(err)));
   }
 
