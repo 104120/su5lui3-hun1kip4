@@ -1,21 +1,15 @@
-
 import React from 'react';
 import { Link } from 'react-router';
 import superagent from 'superagent-bluebird-promise';
 import Debug from 'debug';
 import ReactDOM from 'react-dom';
 import 後端網址 from '../後端網址';
+import Ajax頁面板 from '../Ajax頁面板';
 import 輸入欄位 from '../../元素/輸入欄位/輸入欄位';
 
 var debug = Debug('kip4:看書面');
 
-export default class 看書面 extends React.Component {
-
-  constructor (props) {
-    super(props);
-    this.state = {
-    };
-  }
+export default class 看書面 extends Ajax頁面板 {
 
   componentWillMount() {
     superagent.get(後端網址.看書面(this.props.params.pian1ho7))
@@ -30,7 +24,7 @@ export default class 看書面 extends React.Component {
     this.setState({ 所在 });
   }
 
-  render () {
+  頁面 () {
     let { 資料 } = this.state;
     if (資料 == undefined)
     {

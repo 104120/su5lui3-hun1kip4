@@ -1,20 +1,15 @@
-
 import React from 'react';
 import { Link } from 'react-router';
 import superagent from 'superagent-bluebird-promise';
 import Debug from 'debug';
 import ReactDOM from 'react-dom';
+
+import Ajax頁面板 from '../Ajax頁面板';
 import 後端網址 from '../後端網址';
 
 var debug = Debug('kip4:全部資料');
 
-export default class 全部資料 extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
+export default class 全部資料 extends Ajax頁面板 {
 
   componentWillMount() {
     superagent.get(後端網址.全部資料())
@@ -22,17 +17,8 @@ export default class 全部資料 extends React.Component {
       .catch((err) => (debug(err)));
   }
 
-  render () {
+  頁面() {
     let { 資料 } = this.state;
-    if (資料 == undefined)
-    {
-      return (
-        <div className='main container'>
-       載入中…
-      </div>
-      );
-    }
-
     let hian2si7 = 資料.map((tsit8pit4, i)=>(
       <div key={i}>
         <Link to={'/%E7%9C%8B%E6%9B%B8%E9%9D%A2/' + tsit8pit4.id}>

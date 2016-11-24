@@ -2,13 +2,15 @@
 import React from 'react';
 import superagent from 'superagent-bluebird-promise';
 import Debug from 'debug';
-import './拍書面.css';
 import ReactDOM from 'react-dom';
+
+import Ajax頁面板 from '../Ajax頁面板';
 import 輸入欄位 from '../../元素/輸入欄位/輸入欄位';
+import './拍書面.css';
 
 var debug = Debug('kip4:拍書面');
 
-export default class 拍書面 extends React.Component {
+export default class 拍書面 extends Ajax頁面板 {
 
   constructor (props) {
     super(props);
