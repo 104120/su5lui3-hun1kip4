@@ -2,13 +2,13 @@
 import React from 'react';
 import superagent from 'superagent-bluebird-promise';
 import Debug from 'debug';
-import './查.css';
+import './拍書面.css';
 import ReactDOM from 'react-dom';
 import 輸入欄位 from '../../元素/輸入欄位/輸入欄位';
 
-var debug = Debug('kip4:查');
+var debug = Debug('kip4:拍書面');
 
-export default class 查 extends React.Component {
+export default class 拍書面 extends React.Component {
 
   constructor (props) {
     super(props);
