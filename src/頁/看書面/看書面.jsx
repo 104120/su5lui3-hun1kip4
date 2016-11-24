@@ -1,8 +1,10 @@
 
 import React from 'react';
+import { Link } from 'react-router';
 import superagent from 'superagent-bluebird-promise';
 import Debug from 'debug';
 import ReactDOM from 'react-dom';
+import 後端網址 from '../後端網址';
 import 輸入欄位 from '../../元素/輸入欄位/輸入欄位';
 
 var debug = Debug('kip4:看書面');
@@ -12,14 +14,13 @@ export default class 看書面 extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      逝數: 15,
-      所在: 0,
-      編號: '',
-      文章名: '',
-      作者: '',
-      漢字: '逐家 做伙 來𨑨迌 ！',
-      臺羅: 'ta̍k-ke tsò-hué lâi-tshit-thô ！',
     };
+  }
+
+  componentWillMount() {
+    superagent.get(後端網址.看書面(this.props.params.pian1ho7))
+      .then(({ body }) => (this.setState(body)))
+      .catch((err) => (debug(err)));
   }
 
   振動(textarea) {
@@ -30,25 +31,36 @@ export default class 看書面 extends React.Component {
   }
 
   render () {
-    let { 逝數, 所在, 編號, 文章名, 作者, 漢字, 臺羅 } = this.state;
+    let { 資料 } = this.state;
+    if (資料 == undefined)
+    {
+      return (
+        <div className='main container'>
+       載入中…
+      </div>
+      );
+    }
+
+    let { 逝數, 所在, 原始檔網址, 編號, 文章名, 作者, 漢字, 臺羅 } = this.state.資料;
     return (
       <div className='main container'>
         <form className="ui form">
           <div className="four fields">
             <div className="field">
-              <label>原始檔</label><input type='file' name='原始檔'/>
+              <label>原始檔</label>
+              <a href={後端網址.原始檔案(原始檔網址)}>{原始檔網址.substring(原始檔網址.lastIndexOf('/') + 1)}</a>
             </div>
             <div className="field">
               <label>編號</label>
-              <input type='text' placeholder="編號" value={編號}/>
+              <input type='text' placeholder="編號" value={編號} readOnly='true' disabled='true'/>
             </div>
             <div className="field">
              <label>文章名</label>
-             <input type='text' placeholder="文章名" value={文章名}/>
+             <input type='text' placeholder="文章名" value={文章名} readOnly='true' disabled='true'/>
             </div>
             <div className="field">
               <label>作者</label>
-              <input type='text' placeholder="作者" value={作者}/>
+              <input type='text' placeholder="作者" value={作者} readOnly='true' disabled='true'/>
             </div>
           </div>
           <div className="ui grid">
@@ -68,6 +80,7 @@ export default class 看書面 extends React.Component {
               </div>
           </div>
         </form>
+        <Link to={'/%E6%8B%8D%E6%9B%B8%E9%9D%A2/' + this.props.params.pian1ho7}>修改</Link>
       </div>
     );
   }

@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router';
 import superagent from 'superagent-bluebird-promise';
 import Debug from 'debug';
 import ReactDOM from 'react-dom';
@@ -34,7 +35,9 @@ export default class 全部資料 extends React.Component {
 
     let hian2si7 = 資料.map((tsit8pit4, i)=>(
       <div key={i}>
-        {tsit8pit4.文章名} {tsit8pit4.作者} {tsit8pit4.聽拍的人}
+        <Link to={'/%E7%9C%8B%E6%9B%B8%E9%9D%A2/' + tsit8pit4.id}>
+          {tsit8pit4.文章名} {tsit8pit4.作者} {tsit8pit4.聽拍的人}
+        </Link>
       </div>
       ));
     return (

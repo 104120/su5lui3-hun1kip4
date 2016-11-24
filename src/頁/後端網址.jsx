@@ -3,7 +3,11 @@ export default class 後端網址  {
     return 'http://localhost:8000/';
   }
 
-  static 報表網址() {
-    return 'http://localhost:8000/報表';
+  static 看書面(pian1ho7) {
+    return 'http://localhost:8000/看書面/' + pian1ho7;
+  }
+
+  static 原始檔案(檔案) {
+    return 'http://localhost:8000' + 檔案;
   }
 }

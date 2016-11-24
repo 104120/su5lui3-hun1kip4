@@ -19,8 +19,8 @@ render(
   <Router history={history}>
           <Route path='/' component={網站}>
               <IndexRoute component={全部資料}/>
-              <Route path='%E7%9C%8B%E6%9B%B8%E9%9D%A2/:ku' component={看書面}/>
-              <Route path='%E6%8B%8D%E6%9B%B8%E9%9D%A2/:ku' component={拍書面}/>
+              <Route path='%E7%9C%8B%E6%9B%B8%E9%9D%A2/:pian1ho7' component={看書面}/>
+              <Route path='%E6%8B%8D%E6%9B%B8%E9%9D%A2/:pian1ho7' component={拍書面}/>
               <Route path='**' component={全部資料}/>
           </Route>
       </Router>,
