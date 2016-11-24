@@ -14,9 +14,22 @@ export default class 拍書面 extends React.Component  {
 
   constructor (props) {
     super(props);
-    this.state = {};
+    this.state = {
+      逝數: 15,
+      所在: 0,
+    };
     superagent.get(後端網址.看書面(this.props.params.pian1ho7))
-      .then(({ body }) => (this.setState(body)))
+      .then(function ({ body }) {
+        let { 資料 } = body;
+        let {漢字,臺羅}=資料 
+        let 漢字逝數 = 漢字.split('\n').length;
+        if (漢字逝數 > this.state.逝數)
+          資料.逝數= 漢字逝數 + 10 ;
+        let 臺羅逝數 = 臺羅.split('\n').length;
+        if (臺羅逝數 > this.state.逝數)
+          資料.逝數= 臺羅逝數 + 10 ;
+        this.setState(資料)
+      }.bind(this))
       .catch((err) => (debug(err)));
   }
 
@@ -55,12 +68,11 @@ export default class 拍書面 extends React.Component  {
   }
 
   render () {
-    let { 資料 } = this.state;
-    if (資料 == undefined) {
+    let { 逝數, 所在, 原始檔網址, 編號, 文章名, 作者, 漢字, 臺羅 } = this.state;
+    if (文章名 == undefined) {
       return (<載入中 />);
     }
 
-    let { 逝數, 所在, 原始檔網址, 編號, 文章名, 作者, 漢字, 臺羅 } = 資料;
     return (
       <div className='main container'>
         <form className="ui form">

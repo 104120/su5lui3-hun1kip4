@@ -13,9 +13,12 @@ export default class 看書面 extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      逝數: 15,
+      所在: 0,
+    };
     superagent.get(後端網址.看書面(this.props.params.pian1ho7))
-      .then(({ body }) => (this.setState(body)))
+      .then(({ body }) => (this.setState(body.資料)))
       .catch((err) => (debug(err)));
   }
 
@@ -27,12 +30,11 @@ export default class 看書面 extends React.Component {
   }
 
   render() {
-    let { 資料 } = this.state;
-    if (資料 == undefined) {
+    let { 逝數, 所在, 原始檔網址, 編號, 文章名, 作者, 漢字, 臺羅 } = this.state;
+    if (文章名 == undefined) {
       return (<載入中 />);
     }
 
-    let { 逝數, 所在, 原始檔網址, 編號, 文章名, 作者, 漢字, 臺羅 } = 資料;
     return (
       <div className='main container'>
         <form className="ui form">
