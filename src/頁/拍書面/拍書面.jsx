@@ -67,7 +67,7 @@ export default class 拍書面 extends React.Component  {
   }
 
   render () {
-    let { id,逝數, 所在, 原始檔網址, 編號, 文章名, 作者, 漢字, 臺羅 } = this.state;
+    let { id, 逝數, 所在, 原始檔網址, 編號, 文章名, 作者, 漢字, 臺羅 } = this.state;
     if (文章名 == undefined) {
       return (<載入中 />);
     }
