@@ -4,14 +4,16 @@ import superagent from 'superagent-bluebird-promise';
 import Debug from 'debug';
 import ReactDOM from 'react-dom';
 import 後端網址 from '../後端網址';
-import Ajax頁面板 from '../Ajax頁面板';
+import 載入中 from '../../元素/載入中/載入中';
 import 輸入欄位 from '../../元素/輸入欄位/輸入欄位';
 
 var debug = Debug('kip4:看書面');
 
-export default class 看書面 extends Ajax頁面板 {
+export default class 看書面 extends React.Component {
 
-  componentWillMount() {
+  constructor(props) {
+    super(props);
+    this.state = {};
     superagent.get(後端網址.看書面(this.props.params.pian1ho7))
       .then(({ body }) => (this.setState(body)))
       .catch((err) => (debug(err)));
@@ -24,18 +26,13 @@ export default class 看書面 extends Ajax頁面板 {
     this.setState({ 所在 });
   }
 
-  頁面 () {
+  render() {
     let { 資料 } = this.state;
-    if (資料 == undefined)
-    {
-      return (
-        <div className='main container'>
-       載入中…
-      </div>
-      );
+    if (資料 == undefined) {
+      return (<載入中 />);
     }
 
-    let { 逝數, 所在, 原始檔網址, 編號, 文章名, 作者, 漢字, 臺羅 } = this.state.資料;
+    let { 逝數, 所在, 原始檔網址, 編號, 文章名, 作者, 漢字, 臺羅 } = 資料;
     return (
       <div className='main container'>
         <form className="ui form">

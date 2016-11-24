@@ -3,26 +3,21 @@ import React from 'react';
 import superagent from 'superagent-bluebird-promise';
 import Debug from 'debug';
 import ReactDOM from 'react-dom';
-
-import Ajax頁面板 from '../Ajax頁面板';
+import 後端網址 from '../後端網址';
+import 載入中 from '../../元素/載入中/載入中';
 import 輸入欄位 from '../../元素/輸入欄位/輸入欄位';
 import './拍書面.css';
 
 var debug = Debug('kip4:拍書面');
 
-export default class 拍書面 extends Ajax頁面板 {
+export default class 拍書面 extends React.Component  {
 
   constructor (props) {
     super(props);
-    this.state = {
-      逝數: 15,
-      所在: 0,
-      編號: '',
-      文章名: '',
-      作者: '',
-      漢字: '逐家 做伙 來𨑨迌 ！',
-      臺羅: 'ta̍k-ke tsò-hué lâi-tshit-thô ！',
-    };
+    this.state = {};
+    superagent.get(後端網址.看書面(this.props.params.pian1ho7))
+      .then(({ body }) => (this.setState(body)))
+      .catch((err) => (debug(err)));
   }
 
   振動(textarea) {
@@ -30,18 +25,6 @@ export default class 拍書面 extends Ajax頁面板 {
     let 總闊 = target.scrollWidth - target.clientWidth;
     let 所在 = target.scrollLeft / 總闊;
     this.setState({ 所在 });
-  }
-
-  調編號(event) {
-    this.setState({ 編號: event.target.value });
-  }
-
-  調文章名(event) {
-    this.setState({ 文章名: event.target.value });
-  }
-
-  調作者(event) {
-    this.setState({ 作者: event.target.value });
   }
 
   調漢字(漢字) {
@@ -59,25 +42,31 @@ export default class 拍書面 extends Ajax頁面板 {
   }
 
   render () {
-    let { 逝數, 所在, 編號, 文章名, 作者, 漢字, 臺羅 } = this.state;
+    let { 資料 } = this.state;
+    if (資料 == undefined) {
+      return (<載入中 />);
+    }
+
+    let { 逝數, 所在, 原始檔網址, 編號, 文章名, 作者, 漢字, 臺羅 } = 資料;
     return (
       <div className='main container'>
         <form className="ui form">
           <div className="four fields">
             <div className="field">
-              <label>原始檔</label><input type='file' name='原始檔'/>
+              <label>原始檔</label>
+              <a href={後端網址.原始檔案(原始檔網址)}>{原始檔網址.substring(原始檔網址.lastIndexOf('/') + 1)}</a>
             </div>
             <div className="field">
               <label>編號</label>
-              <input type='text' placeholder="編號" value={編號} onChange={this.調編號.bind(this)} name='編號'/>
+              <input type='text' placeholder="編號" value={編號} readOnly='true' disabled='true'/>
             </div>
             <div className="field">
              <label>文章名</label>
-             <input type='text' placeholder="文章名" value={文章名} onChange={this.調文章名.bind(this)} name='文章名'/>
+             <input type='text' placeholder="文章名" value={文章名} readOnly='true' disabled='true'/>
             </div>
             <div className="field">
               <label>作者</label>
-              <input type='text' placeholder="作者" value={作者} onChange={this.調作者.bind(this)} name='作者'/>
+              <input type='text' placeholder="作者" value={作者} readOnly='true' disabled='true'/>
             </div>
           </div>
           <div className="ui grid">
