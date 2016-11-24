@@ -11,7 +11,7 @@ export default class 全部資料 extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {      
+    this.state = {
     };
   }
 
@@ -22,20 +22,21 @@ export default class 全部資料 extends React.Component {
   }
 
   render () {
-    let {資料}=this.state
-    if (資料==undefined)
+    let { 資料 } = this.state;
+    if (資料 == undefined)
     {
-    return (
-      <div className='main container'>
+      return (
+        <div className='main container'>
        載入中…
       </div>
-    ); 
+      );
     }
-    let hian2si7=資料.map((tsit8pit4,i)=>(
+
+    let hian2si7 = 資料.map((tsit8pit4, i)=>(
       <div key={i}>
         {tsit8pit4.文章名} {tsit8pit4.作者} {tsit8pit4.聽拍的人}
       </div>
-      ))
+      ));
     return (
       <div className='main container'>
         {hian2si7}
