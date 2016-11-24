@@ -25,7 +25,7 @@ export default class 頁頭 extends React.Component {
         <div className='app bar container'>
           <ul className='ui menu container inverted'>
             <li className='item'>
-              首頁
+              <Link to='/'>首頁</Link>
             </li>
             <li className='item'>
               <a href='#' onClick={this.open書寫規範.bind(this)}>書寫規範</a>
