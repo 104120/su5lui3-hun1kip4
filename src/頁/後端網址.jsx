@@ -2,7 +2,7 @@ export default class 後端網址  {
   static 主機() {
 
     // return 'http://localhost:8000';
-    return 'http://xn--1xt27my50b.xn--kbr136hblivtn.xn--v0qr21b.xn--kpry57d';
+    return 'http://xn--1xt27my50b.xn--kbrr83a6ixbzl.xn--v0qr21b.xn--kpry57d';
   }
 
   static 全部資料() {
