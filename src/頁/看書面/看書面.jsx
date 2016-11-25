@@ -40,7 +40,7 @@ export default class 看書面 extends React.Component {
   }
 
   render() {
-    let { id, 逝數, 所在, 原始檔網址, 編號, 文章名, 作者, 漢字, 臺羅 } = this.state;
+    let { id, 逝數, 所在, 原始檔網址, 編號, 文章名, 作者, 啥人改的, 漢字, 臺羅 } = this.state;
     if (文章名 == undefined) {
       return (<載入中 />);
     }
@@ -68,6 +68,10 @@ export default class 看書面 extends React.Component {
             <div className="field">
               <label>作者</label>
               <input type='text' placeholder="作者" value={作者} readOnly='true' disabled='true'/>
+            </div>
+            <div className="field">
+              <label>啥人上尾改的</label>
+              <input type='text' value={啥人改的} readOnly='true' disabled='true'/>
             </div>
           </div>
           <div className="ui grid">

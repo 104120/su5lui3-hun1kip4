@@ -68,11 +68,13 @@ export default class 拍書面 extends React.Component  {
     if (這馬逝數 > this.state.逝數)
       this.setState({ 逝數: 這馬逝數 + 10 });
   }
-  登入成功(){
-    if(this.state.登入無===false){
-      this.送出()
+
+  登入成功() {
+    if (this.state.登入無 === false) {
+      this.送出();
     }
-    this.setState({ 登入無: true })
+
+    this.setState({ 登入無: true });
   }
 
   送出() {
@@ -89,7 +91,7 @@ export default class 拍書面 extends React.Component  {
   }
 
   render () {
-    let { id, 逝數, 所在, 原始檔網址, 編號, 文章名, 作者, 漢字, 臺羅, 登入無 } = this.state;
+    let { id, 逝數, 所在, 原始檔網址, 編號, 文章名, 作者, 啥人改的, 漢字, 臺羅, 登入無 } = this.state;
     if (文章名 == undefined) {
       return (<載入中 />);
     }
@@ -97,7 +99,7 @@ export default class 拍書面 extends React.Component  {
     return (
       <div className='main container'>
         <form className="ui form">
-          <div className="five fields">
+          <div className="six fields">
             <div className="field">
               <label>流水號</label>
               <input type='text' placeholder="流水號" value={id} readOnly='true' disabled='true'/>
@@ -117,6 +119,10 @@ export default class 拍書面 extends React.Component  {
             <div className="field">
               <label>作者</label>
               <input type='text' placeholder="作者" value={作者} readOnly='true' disabled='true'/>
+            </div>
+            <div className="field">
+              <label>啥人上尾改的</label>
+              <input type='text' value={啥人改的} readOnly='true' disabled='true'/>
             </div>
           </div>
           <div className="ui grid">
