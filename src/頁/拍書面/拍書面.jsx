@@ -16,6 +16,7 @@ export default class 拍書面 extends React.Component  {
     this.state = {
       逝數: 15,
       所在: 0,
+      登入無: false,
     };
     superagent.get(後端網址.看書面(this.props.params.pian1ho7))
       .then(function ({ body }) {
@@ -30,6 +31,21 @@ export default class 拍書面 extends React.Component  {
         this.setState(資料);
       }.bind(this))
       .catch((err) => (debug(err)));
+  }
+
+  componentWillMount() {
+    this.timer = setInterval(this.定期.bind(this), 2000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
+  定期() {
+    superagent.get(後端網址.登入無())
+      .withCredentials()
+      .then(({ body })=>(this.setState({ 登入無: true })))
+      .catch((err) => (this.setState({ 登入無: false })));
   }
 
   振動(textarea) {
@@ -67,7 +83,7 @@ export default class 拍書面 extends React.Component  {
   }
 
   render () {
-    let { id, 逝數, 所在, 原始檔網址, 編號, 文章名, 作者, 漢字, 臺羅 } = this.state;
+    let { id, 逝數, 所在, 原始檔網址, 編號, 文章名, 作者, 漢字, 臺羅, 登入無 } = this.state;
     if (文章名 == undefined) {
       return (<載入中 />);
     }
@@ -111,7 +127,13 @@ export default class 拍書面 extends React.Component  {
                 輸入內容={this.調臺羅.bind(this)} />
             </div>
           </div>
-          <div className="ui submit button" onClick={this.送出.bind(this)}>存檔</div>
+          { 登入無 ? (
+              <div className="ui submit button" onClick={this.送出.bind(this)}>存檔</div>
+            ) : (
+              <a target='_blank' href={後端網址.登入()}>
+                <i className="facebook icon"></i>登入
+              </a>
+          )}
         </form>
       </div>
     );
