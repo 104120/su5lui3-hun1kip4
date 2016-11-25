@@ -41,11 +41,6 @@ textarea{
   width:100%;
   overflow-y: hidden;
   overflow-x: scroll;
-}
-textarea.改{
-  width:100%;
-  overflow-y: hidden;
-  overflow-x: scroll;
   white-space: nowrap;
 }
 
