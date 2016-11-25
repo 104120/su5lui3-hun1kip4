@@ -16,7 +16,7 @@ export default class 拍書面 extends React.Component  {
     this.state = {
       逝數: 15,
       所在: 0,
-      登入無: false,
+      登入無: undefined,
     };
     superagent.get(後端網址.看書面(this.props.params.pian1ho7))
       .then(function ({ body }) {
@@ -44,7 +44,7 @@ export default class 拍書面 extends React.Component  {
   定期() {
     superagent.get(後端網址.登入無())
       .withCredentials()
-      .then(({ body })=>(this.setState({ 登入無: true })))
+      .then((this.登入成功.bind(this)))
       .catch((err) => (this.setState({ 登入無: false })));
   }
 
@@ -67,6 +67,12 @@ export default class 拍書面 extends React.Component  {
     let 這馬逝數 = 臺羅.split('\n').length;
     if (這馬逝數 > this.state.逝數)
       this.setState({ 逝數: 這馬逝數 + 10 });
+  }
+  登入成功(){
+    if(this.state.登入無===false){
+      this.送出()
+    }
+    this.setState({ 登入無: true })
   }
 
   送出() {
@@ -130,9 +136,12 @@ export default class 拍書面 extends React.Component  {
           { 登入無 ? (
               <div className="ui submit button" onClick={this.送出.bind(this)}>存檔</div>
             ) : (
-              <a target='_blank' href={後端網址.登入()}>
-                <i className="facebook icon"></i>登入
-              </a>
+              <div>
+                <div className="ui submit disabled button">存檔</div>
+                <a target='_blank' href={後端網址.登入()}>
+                  <i className="facebook icon"></i>登入後才能存檔
+                </a>
+              </div>
           )}
         </form>
       </div>
