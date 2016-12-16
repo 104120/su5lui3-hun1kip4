@@ -12,23 +12,52 @@ export default class 字數 extends React.Component  {
 
   constructor (props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
+    superagent.get(後端網址.算字數())
+      .then(({ body }) => (this.setState(body)))
+      .catch((err) => (debug(err)));
   }
 
-  componentWillMount() {}
-
-  componentWillUnmount() {}
+  render資料() {
+    let { 資料 } = this.state;
+    let 結果 = 資料.map((一筆, i)=>{
+      return (
+      <tr key={i}>
+          <td>
+              {一筆.聽拍的人?一筆.聽拍的人:'(未命名)'}
+          </td>
+          <td>
+              {一筆.漢字} 
+          </td>
+          <td>
+              {一筆.臺羅}
+          </td>
+        </tr>
+        );
+    });
+    return 結果;
+  }
 
   render () {
-    let {文章名} = this.state;
-    if (文章名 == undefined) {
+    let { 資料 } = this.state;
+    if (資料 == undefined) {
       return (<載入中 />);
     }
 
     return (
       <div className='main container'>
-        sui2
+        <table className="ui table">
+        <thead>
+          <tr>
+            <th>聽拍的人</th>
+            <th>漢字字數</th>
+            <th>臺羅字數</th>
+          </tr>
+        </thead>
+        <tbody>
+          {this.render資料()}
+        </tbody>
+      </table>
       </div>
     );
   }
