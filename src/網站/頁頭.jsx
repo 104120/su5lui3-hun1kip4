@@ -31,6 +31,9 @@ export default class 頁頭 extends React.Component {
               <a href='#' onClick={this.open書寫規範.bind(this)}>書寫規範</a>
             </li>
             <li className='item'>
+              <Link to='/%E5%AD%97%E6%95%B8/'>字數</Link>
+            </li>
+            <li className='item'>
               <a href='https://www.facebook.com/groups/1176719339085090/1182176585206032/?notif_t=group_activity&notif_id=1479125586448144'>FB社團</a>
             </li>
             <li className='item'>
