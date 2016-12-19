@@ -20,11 +20,10 @@ export default class 字數 extends React.Component  {
 
   render資料() {
     let { 資料 } = this.state;
-    let 結果 = 資料.map((一筆, i)=>{
-      return (
+    let 結果 = 資料.map((一筆, i)=> (
       <tr key={i}>
           <td>
-              {一筆.聽拍的人?一筆.聽拍的人:'(未命名)'}
+              {一筆.聽拍的人 ? 一筆.聽拍的人 : '(未命名)'}
           </td>
           <td>
               {一筆.漢字} 
@@ -33,8 +32,8 @@ export default class 字數 extends React.Component  {
               {一筆.臺羅}
           </td>
         </tr>
-        );
-    });
+        )
+    );
     return 結果;
   }
 
