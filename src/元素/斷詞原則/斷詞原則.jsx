@@ -18,7 +18,7 @@ export default class 斷詞原則 extends React.Component {
                       <tr><td>有 法度</td><td>ū huat-tōo</td></tr>
                       <tr><td>掠人</td><td>lia̍h lâng</td></tr>
                       <tr><td>一个人</td><td>tsi̍t ê lâng</td></tr>
-                      <tr><td>一個月</td><td>tsi̍t kòo gue̍h</td></tr>
+                      <tr><td>一個月</td><td>tsi̍t kò gue̍h</td></tr>
                       <tr><td>遮爾</td><td>tsiah-nī</td></tr>
                     </tbody>
                   </table>
