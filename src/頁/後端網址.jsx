@@ -24,4 +24,8 @@ export default class 後端網址  {
   static 登入無()  {
     return this.主機() + '/accounts/登入無/';
   }
+
+  static 算字數()  {
+    return this.主機() + '/算字數/';
+  }
 }
