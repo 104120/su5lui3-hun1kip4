@@ -28,4 +28,9 @@ export default class 後端網址  {
   static 算字數()  {
     return this.主機() + '/算字數/';
   }
+
+  static 對齊() {
+    return 'https://xn--lhrz38b.xn--v0qr21b.xn--kpry57d/漢字音標對齊';
+  }
+
 }

@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import 後端網址 from '../後端網址';
 import 載入中 from '../../元素/載入中/載入中';
 import 輸入欄位 from '../../元素/輸入欄位/輸入欄位';
+import 漢字臺羅 from '../../元素/漢字臺羅/漢字臺羅';
 
 var debug = Debug('kip4:看書面');
 
@@ -34,18 +35,10 @@ export default class 看書面 extends React.Component {
     const 行數 = (漢字陣列.length > 臺羅陣列.length) ? 漢字陣列.length : 臺羅陣列.length;
     
     for (let i = 0 ; i < 行數 ; i++) {
-      let 字 = 漢字陣列[i];
-      let 羅 = 臺羅陣列[i];
-      合併.push({字:字, 羅:羅});
+      // debug('%s %s', 漢字陣列[i], 臺羅陣列[i]);
+      合併.push(<漢字臺羅 key={i} 漢字={漢字陣列[i]} 臺羅={臺羅陣列[i]}/>);
     }
 
-    // debug('%o', 合併);
-    let 顯示合併 = 合併.map((item, i)=>(
-      <div className="ui text container" key={i}>
-        <p>{item.字}</p>
-        <p>{item.羅}</p>&nbsp;
-      </div>
-    ));
     return (
       <div className='main container'>
         <Link to={'/%E6%8B%8D%E6%9B%B8%E9%9D%A2/' + this.props.params.pian1ho7}>
@@ -79,7 +72,7 @@ export default class 看書面 extends React.Component {
             </div>
           </div>
           <div className="ui">
-            {顯示合併}
+            {合併}
           </div>
         </form>
       </div>
