@@ -13,30 +13,13 @@ export default class 看書面 extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      逝數: 15,
-      所在: 0,
-    };
+    this.state = {};
     superagent.get(後端網址.看書面(this.props.params.pian1ho7))
       .then(function ({ body }) {
         let { 資料 } = body;
-        let { 漢字, 臺羅 } = 資料;
-        let 漢字逝數 = 漢字.split('\n').length;
-        if (漢字逝數 > this.state.逝數)
-          資料.逝數 = 漢字逝數 + 10;
-        let 臺羅逝數 = 臺羅.split('\n').length;
-        if (臺羅逝數 > this.state.逝數)
-          資料.逝數 = 臺羅逝數 + 10;
         this.setState(資料);
       }.bind(this))
       .catch((err) => (debug(err)));
-  }
-
-  振動(textarea) {
-    let { target } = textarea;
-    let 總闊 = target.scrollWidth - target.clientWidth;
-    let 所在 = target.scrollLeft / 總闊;
-    this.setState({ 所在 });
   }
 
   render() {
@@ -45,8 +28,42 @@ export default class 看書面 extends React.Component {
       return (<載入中 />);
     }
 
+    let 合併 = [];
+    const 漢字陣列 = 漢字.split('\n');
+    const 臺羅陣列 = 臺羅.split('\n');
+    const 行數 = (漢字陣列.length > 臺羅陣列.length) ? 漢字陣列.length : 臺羅陣列.length;
+    
+    for (let i = 0 ; i < 行數 ; i++) {
+      let 字 = 漢字陣列[i];
+      let 羅 = 臺羅陣列[i];
+      debug('%s', 字);
+      debug('%s', 羅);
+      if(字 === '\n' && 羅 === '\n'){
+        debug('sui2 3');
+        合併.push('\n');
+        continue;
+      }
+      if(字 && 字 !== '\n'){
+        debug('sui2 1');
+        合併.push(字);
+      }
+      if(羅 && 羅 !== '\n'){
+        debug('sui2 2');
+        合併.push(羅);
+      }
+    }
+
+    debug('%o', 合併);
+
+
+    let 顯示合併 = 合併.map((item, i)=>(
+      <p key={i}>{item}</p>
+    ));
     return (
       <div className='main container'>
+        <Link to={'/%E6%8B%8D%E6%9B%B8%E9%9D%A2/' + this.props.params.pian1ho7}>
+          <i className="edit icon"></i>修改
+        </Link>
         <form className="ui form">
           <div className="five fields">
             <div className="field">
@@ -74,26 +91,10 @@ export default class 看書面 extends React.Component {
               <input type='text' value={啥人改的} readOnly='true' disabled='true'/>
             </div>
           </div>
-          <div className="ui grid">
-            <div className="seven wide column" key='1'>
-              <label>臺語漢字</label>
-              <輸入欄位 語句={漢字} 逝數={逝數}
-                所在={所在} 振動={this.振動.bind(this)}
-                袂當改={true}
-                輸入內容={(i)=>(i)} />
-            </div>
-            <div className="nine wide column" key='2'>
-              <label>臺羅</label>
-              <輸入欄位 語句={臺羅} 逝數={逝數}
-                所在={所在} 振動={this.振動.bind(this)}
-                袂當改={true}
-                輸入內容={(i)=>(i)} />
-              </div>
+          <div className="ui">
+            {顯示合併}
           </div>
         </form>
-        <Link to={'/%E6%8B%8D%E6%9B%B8%E9%9D%A2/' + this.props.params.pian1ho7}>
-          <i className="edit icon"></i>修改
-        </Link>
       </div>
     );
   }
