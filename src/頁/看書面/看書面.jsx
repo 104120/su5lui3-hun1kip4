@@ -29,35 +29,26 @@ export default class 看書面 extends React.Component {
     }
 
     let 合併 = [];
-    const 漢字陣列 = 漢字.split('\n');
-    const 臺羅陣列 = 臺羅.split('\n');
+    let 漢字陣列 = 漢字.split('\n');
+    let 臺羅陣列 = 臺羅.split('\n');
     const 行數 = (漢字陣列.length > 臺羅陣列.length) ? 漢字陣列.length : 臺羅陣列.length;
     
     for (let i = 0 ; i < 行數 ; i++) {
       let 字 = 漢字陣列[i];
       let 羅 = 臺羅陣列[i];
-      debug('%s', 字);
-      debug('%s', 羅);
-      if(字 === '\n' && 羅 === '\n'){
-        debug('sui2 3');
-        合併.push('\n');
-        continue;
-      }
-      if(字 && 字 !== '\n'){
-        debug('sui2 1');
+      if(字){
         合併.push(字);
       }
-      if(羅 && 羅 !== '\n'){
-        debug('sui2 2');
+      if(羅){
         合併.push(羅);
+      }
+      if(!字 && !羅){
+        合併.push('');
       }
     }
 
-    debug('%o', 合併);
-
-
     let 顯示合併 = 合併.map((item, i)=>(
-      <p key={i}>{item}</p>
+      <p key={i}>{item}&nbsp;</p>
     ));
     return (
       <div className='main container'>
