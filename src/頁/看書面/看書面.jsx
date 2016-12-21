@@ -36,19 +36,15 @@ export default class 看書面 extends React.Component {
     for (let i = 0 ; i < 行數 ; i++) {
       let 字 = 漢字陣列[i];
       let 羅 = 臺羅陣列[i];
-      if(字){
-        合併.push(字);
-      }
-      if(羅){
-        合併.push(羅);
-      }
-      if(!字 && !羅){
-        合併.push('');
-      }
+      合併.push({字:字, 羅:羅});
     }
 
+    // debug('%o', 合併);
     let 顯示合併 = 合併.map((item, i)=>(
-      <p key={i}>{item}&nbsp;</p>
+      <div className="ui text container" key={i}>
+        <p>{item.字}</p>
+        <p>{item.羅}</p>&nbsp;
+      </div>
     ));
     return (
       <div className='main container'>
