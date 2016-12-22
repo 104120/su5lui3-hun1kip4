@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import superagent from 'superagent-bluebird-promise';
 import Debug from 'debug';
 import 後端網址 from '../../頁/後端網址';
+import 一個詞 from '../元素/一個詞/一個詞';
 
 var debug = Debug('kip4:漢字臺羅');
 
@@ -42,14 +43,11 @@ export default class 漢字臺羅 extends React.Component {
 	    	});
 
 	   	詞 = 分詞陣列.map((分詞, i)=>(
-     		<ruby key={i}>
-        		{漢字陣列[i]}
-       		<rt>{臺羅陣列[i]}</rt>
-      		</ruby>
+     		<一個詞 key={i} 漢字={漢字陣列[i]} 臺羅={臺羅陣列[i]}/>
     		));
 		}
 
-  	return (
+  		return (
 	 		<div>{詞}</div>
    	);
 	}
