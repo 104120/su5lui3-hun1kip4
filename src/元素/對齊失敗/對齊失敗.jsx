@@ -13,16 +13,24 @@ export default class 對齊失敗 extends React.Component {
 
   render() {
     return (
-      <div className="ui grid">
-        <div className="one wide column">
-          <span className="ui icon button" data-tooltip="該行對齊失敗" data-position="top left">
-            <i className="warning sign red icon"></i>
-        </span>
-        </div>
-        <div className="fifteen wide column">
-          {this.props.臺羅}<br/>
-          {this.props.漢字}
-        </div>
+        <div className="ui divided items">
+          <div className="item">
+          
+            <div className="ui image">
+                <i className="warning sign icon large pink fitted"></i>
+            </div>
+            
+            <div className="content">
+              <div className="header">
+                <p>對齊失敗</p>
+              </div>
+              <div className="description">
+                <p>{this.props.臺羅}</p>
+                <p>{this.props.漢字}</p>
+              </div>
+            </div>
+
+          </div>
       </div>
     );
   }
