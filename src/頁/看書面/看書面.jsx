@@ -23,21 +23,26 @@ export default class 看書面 extends React.Component {
       .catch((err) => (debug(err)));
   }
 
+  顯示漢字臺羅() {
+    let { 漢字, 臺羅 } = this.state;
+    let 漢字陣列 = 漢字.split('\n');
+    let 臺羅陣列 = 臺羅.split('\n');
+    const 行數 = (漢字陣列.length > 臺羅陣列.length) ? 漢字陣列.length : 臺羅陣列.length;
+    
+    let 合併 = [];
+    for (let i = 0 ; i < 行數 ; i++) {
+      合併.push(<漢字臺羅 key={i} 漢字={漢字陣列[i]} 臺羅={臺羅陣列[i]}/>);
+    }
+    return 合併;
+  }
+
   render() {
     let { id, 逝數, 所在, 原始檔網址, 編號, 文章名, 作者, 啥人改的, 漢字, 臺羅 } = this.state;
     if (文章名 == undefined) {
       return (<載入中 />);
     }
 
-    let 合併 = [];
-    let 漢字陣列 = 漢字.split('\n');
-    let 臺羅陣列 = 臺羅.split('\n');
-    const 行數 = (漢字陣列.length > 臺羅陣列.length) ? 漢字陣列.length : 臺羅陣列.length;
-    
-    for (let i = 0 ; i < 行數 ; i++) {
-      // debug('%s %s', 漢字陣列[i], 臺羅陣列[i]);
-      合併.push(<漢字臺羅 key={i} 漢字={漢字陣列[i]} 臺羅={臺羅陣列[i]}/>);
-    }
+    let 合併 = this.顯示漢字臺羅();
 
     return (
       <div className='main container'>
