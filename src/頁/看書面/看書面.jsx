@@ -47,9 +47,6 @@ export default class 看書面 extends React.Component {
 
     return (
       <div className='main container'>
-        <Link to={'/%E6%8B%8D%E6%9B%B8%E9%9D%A2/' + this.props.params.pian1ho7}>
-          <i className="edit icon"></i>修改
-        </Link>
         <form className="ui form">
           <div className="five fields">
             <div className="field">
@@ -78,7 +75,13 @@ export default class 看書面 extends React.Component {
             </div>
           </div>
           <div className="ui">
+            <Link to={'/%E6%8B%8D%E6%9B%B8%E9%9D%A2/' + this.props.params.pian1ho7}>
+              <i className="edit icon"></i>修改
+            </Link>
             {合併}
+            <Link to={'/%E6%8B%8D%E6%9B%B8%E9%9D%A2/' + this.props.params.pian1ho7}>
+              <i className="edit icon"></i>修改
+            </Link>
           </div>
         </form>
       </div>
