@@ -17,23 +17,30 @@ export default class 漢字臺羅 extends React.Component {
   }
 
   對齊(parm)  {
-    superagent.get(後端網址.對齊())
-      .query({ 查詢腔口: '閩南語', 漢字: parm.漢字, 音標: parm.臺羅 })
-      .then(({ body }) => (
-        this.setState(body)
-      ))
-      .catch((err) => (debug(err)));
+  		if (parm.漢字 && parm.臺羅) {
+      superagent.get(後端網址.對齊())
+        .query({ 查詢腔口: '閩南語', 漢字: parm.漢字, 音標: parm.臺羅 })
+        .then(({ body }) => (
+          this.setState(body)
+        ))
+        .catch((err) => (debug(err)));
+    }
   }
 
   render() {
 
     let { 失敗, 分詞, 綜合標音 } = this.state;
+    let { 臺羅, 漢字 } = this.props;
     let 詞 = null;
 
-    if (失敗) {
-      詞 = <對齊失敗 臺羅={this.props.臺羅} 漢字={this.props.漢字}/>;
-
-    } else if (分詞) {
+    if (!漢字 && !臺羅) {
+    		//breakline
+      詞 = <br/>;
+    } else if (失敗 || !漢字 || !臺羅) {
+    		//fail
+      詞 = <對齊失敗 臺羅={臺羅} 漢字={漢字}/>;
+    }else if (分詞) {
+    		//success
       let 分詞陣列 = [];
       let 漢字陣列 = [];
       let 臺羅陣列 = [];
