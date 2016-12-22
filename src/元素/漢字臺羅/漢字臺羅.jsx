@@ -4,6 +4,7 @@ import superagent from 'superagent-bluebird-promise';
 import Debug from 'debug';
 import 後端網址 from '../../頁/後端網址';
 import 一個詞 from '../一個詞/一個詞';
+import 對齊失敗 from '../對齊失敗/對齊失敗';
 
 var debug = Debug('kip4:漢字臺羅');
 
@@ -30,14 +31,8 @@ export default class 漢字臺羅 extends React.Component {
     let 詞 = null;
 
     if (失敗) {
-      詞 = <div className="ui icon message">
-					  <i className="warning icon"></i>
-  						<div className="content">
-	    					<div className="header">該行對齊失敗</div>
-	    					<p>{this.props.臺羅}<br/>
-								{this.props.漢字}</p>
-  						</div>
-  					</div>;
+      詞 = <對齊失敗 臺羅={this.props.臺羅} 漢字={this.props.漢字}/>;
+
     } else if (分詞) {
       let 分詞陣列 = [];
       let 漢字陣列 = [];
