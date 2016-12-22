@@ -30,7 +30,14 @@ export default class 漢字臺羅 extends React.Component {
     let 詞 = null;
 
     if (失敗) {
-      詞 = <p>(對齊失敗) {this.props.漢字}{this.props.臺羅}</p>;
+      詞 = <div className="ui icon message">
+					  <i className="warning icon"></i>
+  						<div className="content">
+	    					<div className="header">該行對齊失敗</div>
+	    					<p>{this.props.臺羅}<br/>
+								{this.props.漢字}</p>
+  						</div>
+  					</div>;
     } else if (分詞) {
       let 分詞陣列 = [];
       let 漢字陣列 = [];
@@ -45,10 +52,9 @@ export default class 漢字臺羅 extends React.Component {
       詞 = 分詞陣列.map((分詞, i)=>(
         <一個詞 key={i} 漢字={漢字陣列[i]} 臺羅={臺羅陣列[i]}/>
        ));
+      詞 = <div>{詞}</div>;
     }
 
-    return (
-    <div>{詞}</div>
-    );
+    return 詞;
   }
 }
