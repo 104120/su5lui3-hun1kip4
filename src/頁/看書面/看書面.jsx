@@ -28,11 +28,12 @@ export default class 看書面 extends React.Component {
     let 漢字陣列 = 漢字.split('\n');
     let 臺羅陣列 = 臺羅.split('\n');
     const 行數 = (漢字陣列.length > 臺羅陣列.length) ? 漢字陣列.length : 臺羅陣列.length;
-    
+
     let 合併 = [];
-    for (let i = 0 ; i < 行數 ; i++) {
+    for (let i = 0; i < 行數; i++) {
       合併.push(<漢字臺羅 key={i} 漢字={漢字陣列[i]} 臺羅={臺羅陣列[i]}/>);
     }
+
     return 合併;
   }
 
