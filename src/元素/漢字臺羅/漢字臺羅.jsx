@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import superagent from 'superagent-bluebird-promise';
 import Debug from 'debug';
 import 後端網址 from '../../頁/後端網址';
-import 一個詞 from '../元素/一個詞/一個詞';
+import 一個詞 from '../一個詞/一個詞';
 
 var debug = Debug('kip4:漢字臺羅');
 
