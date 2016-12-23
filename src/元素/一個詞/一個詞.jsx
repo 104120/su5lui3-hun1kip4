@@ -26,8 +26,6 @@ export default class 一個詞 extends React.Component {
     let { 失敗, 成功 } = this.state;
     let 詞顏色 = null;
 
-    debug('%o', this.state);
-
     if (失敗 && 失敗 === '字') {
       詞顏色 = 'text red';
     } else if (失敗 && 失敗 === '詞') {
