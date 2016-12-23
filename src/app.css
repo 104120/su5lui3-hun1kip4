@@ -53,3 +53,7 @@ div.su1sia2{
 .ui.items>.item>.content>.description {
   margin-top: 0;
 }
+
+.ui.inverted.dimmer {
+  background-color: #f1efeb;
+}
