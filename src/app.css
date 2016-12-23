@@ -48,3 +48,8 @@ div.su1sia2{
   height:400px;
   overflow-y: scroll;
 }
+
+/*semantic ui*/
+.ui.items>.item>.content>.description {
+  margin-top: 0;
+}

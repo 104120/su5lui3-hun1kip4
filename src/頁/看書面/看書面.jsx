@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import 後端網址 from '../後端網址';
 import 載入中 from '../../元素/載入中/載入中';
 import 輸入欄位 from '../../元素/輸入欄位/輸入欄位';
+import 漢字臺羅 from '../../元素/漢字臺羅/漢字臺羅';
 
 var debug = Debug('kip4:看書面');
 
@@ -13,30 +14,27 @@ export default class 看書面 extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      逝數: 15,
-      所在: 0,
-    };
+    this.state = {};
     superagent.get(後端網址.看書面(this.props.params.pian1ho7))
       .then(function ({ body }) {
         let { 資料 } = body;
-        let { 漢字, 臺羅 } = 資料;
-        let 漢字逝數 = 漢字.split('\n').length;
-        if (漢字逝數 > this.state.逝數)
-          資料.逝數 = 漢字逝數 + 10;
-        let 臺羅逝數 = 臺羅.split('\n').length;
-        if (臺羅逝數 > this.state.逝數)
-          資料.逝數 = 臺羅逝數 + 10;
         this.setState(資料);
       }.bind(this))
       .catch((err) => (debug(err)));
   }
 
-  振動(textarea) {
-    let { target } = textarea;
-    let 總闊 = target.scrollWidth - target.clientWidth;
-    let 所在 = target.scrollLeft / 總闊;
-    this.setState({ 所在 });
+  顯示漢字臺羅() {
+    let { 漢字, 臺羅 } = this.state;
+    let 漢字陣列 = 漢字.split('\n');
+    let 臺羅陣列 = 臺羅.split('\n');
+    const 行數 = (漢字陣列.length > 臺羅陣列.length) ? 漢字陣列.length : 臺羅陣列.length;
+
+    let 合併 = [];
+    for (let i = 0; i < 行數; i++) {
+      合併.push(<漢字臺羅 key={i} 漢字={漢字陣列[i]} 臺羅={臺羅陣列[i]}/>);
+    }
+
+    return 合併;
   }
 
   render() {
@@ -44,6 +42,8 @@ export default class 看書面 extends React.Component {
     if (文章名 == undefined) {
       return (<載入中 />);
     }
+
+    let 合併 = this.顯示漢字臺羅();
 
     return (
       <div className='main container'>
@@ -74,26 +74,16 @@ export default class 看書面 extends React.Component {
               <input type='text' value={啥人改的} readOnly='true' disabled='true'/>
             </div>
           </div>
-          <div className="ui grid">
-            <div className="seven wide column" key='1'>
-              <label>臺語漢字</label>
-              <輸入欄位 語句={漢字} 逝數={逝數}
-                所在={所在} 振動={this.振動.bind(this)}
-                袂當改={true}
-                輸入內容={(i)=>(i)} />
-            </div>
-            <div className="nine wide column" key='2'>
-              <label>臺羅</label>
-              <輸入欄位 語句={臺羅} 逝數={逝數}
-                所在={所在} 振動={this.振動.bind(this)}
-                袂當改={true}
-                輸入內容={(i)=>(i)} />
-              </div>
+          <div className="ui">
+            <Link to={'/%E6%8B%8D%E6%9B%B8%E9%9D%A2/' + this.props.params.pian1ho7}>
+              <i className="edit icon"></i>修改
+            </Link>
+            {合併}
+            <Link to={'/%E6%8B%8D%E6%9B%B8%E9%9D%A2/' + this.props.params.pian1ho7}>
+              <i className="edit icon"></i>修改
+            </Link>
           </div>
         </form>
-        <Link to={'/%E6%8B%8D%E6%9B%B8%E9%9D%A2/' + this.props.params.pian1ho7}>
-          <i className="edit icon"></i>修改
-        </Link>
       </div>
     );
   }
