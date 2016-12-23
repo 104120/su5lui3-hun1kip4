@@ -48,7 +48,7 @@ export default class 漢字臺羅 extends React.Component {
       綜合標音.map(function (標音) {
         分詞陣列 = 分詞陣列.concat(標音.分詞.split(' '));
         漢字陣列 = 漢字陣列.concat(標音.漢字.split(' '));
-        臺羅陣列 = 臺羅陣列.concat(標音.臺羅閏號調.split(' '));
+        臺羅陣列 = 臺羅陣列.concat(標音.臺羅閏號調.replace('--',' --').split(' '));
       });
 
       詞 = 分詞陣列.map((分詞, i)=>(
