@@ -96,7 +96,7 @@ export default class 拍書面 extends React.Component  {
       .send({ 漢字, 臺羅 })
       .then((body)=> {
           alert('存檔好矣，無問題～～');
-          this.setState({ 改過: true });
+          this.setState({ 改過: false });
         })
       .catch(res => {
         window.open(this.props.後端網址 + 'accounts/facebook/login', '_blank');
@@ -105,14 +105,9 @@ export default class 拍書面 extends React.Component  {
 
   返回() {
     // browserHistory.push('/看書面/' + this.props.params.pian1ho7);
-    if (this.state.改過) {
-      if (confirm('文章被修改過，是否存檔再離開？')) {
-        alert('haaaaaa');
-      }
-      // window.location.href = '/看書面/' + this.props.params.pian1ho7;
-    } else {
-      alert('ha');
-      // window.location.href = '/看書面/' + this.props.params.pian1ho7;
+    if ((this.state.改過 && confirm('文章被修改過，是否仍要離開？'))
+      || !this.state.改過) {
+      window.location.href = '/看書面/' + this.props.params.pian1ho7;
     }
   }
 
