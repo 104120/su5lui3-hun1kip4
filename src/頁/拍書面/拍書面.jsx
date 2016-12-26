@@ -7,6 +7,7 @@ import { browserHistory, Link } from 'react-router';
 import 後端網址 from '../後端網址';
 import 載入中 from '../../元素/載入中/載入中';
 import 輸入欄位 from '../../元素/輸入欄位/輸入欄位';
+import 返回提醒 from '../../元素/返回提醒/返回提醒';
 
 var debug = Debug('kip4:拍書面');
 
@@ -19,6 +20,7 @@ export default class 拍書面 extends React.Component  {
       所在: 0,
       登入無: undefined,
       改過: false,
+      modalBackIsOpen: false,
     };
     superagent.get(後端網址.看書面(this.props.params.pian1ho7))
       .then(function ({ body }) {
@@ -46,7 +48,6 @@ export default class 拍書面 extends React.Component  {
   componentDidUpdate(prevProps, prevState) {
     if (prevState.漢字 !== undefined
       && (prevState.漢字 !== this.state.漢字 || prevState.臺羅 !== this.state.臺羅)) {
-      debug('%o', prevState.漢字);
       this.setState({ 改過: true });
     }
   }
@@ -103,12 +104,24 @@ export default class 拍書面 extends React.Component  {
       });
   }
 
-  返回() {
-    // browserHistory.push('/看書面/' + this.props.params.pian1ho7);
-    if ((this.state.改過 && confirm('文章被修改過，是否仍要離開？'))
-      || !this.state.改過) {
-      window.location.href = '/看書面/' + this.props.params.pian1ho7;
+  判斷返回() {
+    if (this.state.改過) {
+      this.open返回提醒();
+    } else {
+      this.返回();
     }
+  }
+
+  返回() {
+    window.location.href = '/看書面/' + this.props.params.pian1ho7;
+  }
+
+  open返回提醒() {
+    this.setState({ modalBackIsOpen: true });
+  }
+
+  close返回提醒() {
+    this.setState({ modalBackIsOpen: false });
   }
 
   render () {
@@ -164,7 +177,7 @@ export default class 拍書面 extends React.Component  {
               <div className="ui submit button" onClick={this.送出.bind(this)}>存檔</div>
             ) : (
               <div>
-                <div className="ui basic button" onClick={this.返回.bind(this)}><i className="reply icon"></i>返回</div>
+                <div className="ui basic button" onClick={this.判斷返回.bind(this)}><i className="reply icon"></i>返回</div>
                 {/*<Link to={'/%E7%9C%8B%E6%9B%B8%E9%9D%A2/' + this.props.params.pian1ho7}  className="ui basic button">
                   <i className="reply icon"></i>返回
                 </Link>*/}
@@ -175,6 +188,9 @@ export default class 拍書面 extends React.Component  {
               </div>
           )}
         </form>
+
+        <返回提醒 modalIsOpen={this.state.modalBackIsOpen}
+          closeModal={this.close返回提醒.bind(this)} 返回={this.返回.bind(this)}/>
       </div>
     );
   }
