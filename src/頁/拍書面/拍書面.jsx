@@ -3,7 +3,7 @@ import React from 'react';
 import superagent from 'superagent-bluebird-promise';
 import Debug from 'debug';
 import ReactDOM from 'react-dom';
-import { Link } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 import 後端網址 from '../後端網址';
 import 載入中 from '../../元素/載入中/載入中';
 import 輸入欄位 from '../../元素/輸入欄位/輸入欄位';
@@ -18,6 +18,7 @@ export default class 拍書面 extends React.Component  {
       逝數: 15,
       所在: 0,
       登入無: undefined,
+      改過: false,
     };
     superagent.get(後端網址.看書面(this.props.params.pian1ho7))
       .then(function ({ body }) {
@@ -40,6 +41,14 @@ export default class 拍書面 extends React.Component  {
 
   componentWillUnmount() {
     clearInterval(this.timer);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.漢字 !== undefined
+      && (prevState.漢字 !== this.state.漢字 || prevState.臺羅 !== this.state.臺羅)) {
+      debug('%o', prevState.漢字);
+      this.setState({ 改過: true });
+    }
   }
 
   定期() {
@@ -85,10 +94,26 @@ export default class 拍書面 extends React.Component  {
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .set('X-CSRFToken', this.props.csrftoken)
       .send({ 漢字, 臺羅 })
-      .then((body)=>(alert('存檔好矣，無問題～～')))
+      .then((body)=> {
+          alert('存檔好矣，無問題～～');
+          this.setState({ 改過: true });
+        })
       .catch(res => {
         window.open(this.props.後端網址 + 'accounts/facebook/login', '_blank');
       });
+  }
+
+  返回() {
+    // browserHistory.push('/看書面/' + this.props.params.pian1ho7);
+    if (this.state.改過) {
+      if (confirm('文章被修改過，是否存檔再離開？')) {
+        alert('haaaaaa');
+      }
+      // window.location.href = '/看書面/' + this.props.params.pian1ho7;
+    } else {
+      alert('ha');
+      // window.location.href = '/看書面/' + this.props.params.pian1ho7;
+    }
   }
 
   render () {
@@ -144,10 +169,11 @@ export default class 拍書面 extends React.Component  {
               <div className="ui submit button" onClick={this.送出.bind(this)}>存檔</div>
             ) : (
               <div>
-                <Link to={'/%E7%9C%8B%E6%9B%B8%E9%9D%A2/' + this.props.params.pian1ho7}  className="ui basic button">
+                <div className="ui basic button" onClick={this.返回.bind(this)}><i className="reply icon"></i>返回</div>
+                {/*<Link to={'/%E7%9C%8B%E6%9B%B8%E9%9D%A2/' + this.props.params.pian1ho7}  className="ui basic button">
                   <i className="reply icon"></i>返回
-                </Link>
-                <div className="ui submit primary disabled button"><i className="pause icon"></i>存檔</div>
+                </Link>*/}
+                <div className="ui submit primary disabled button"><i className="save icon"></i>存檔</div>
                 <a target='_blank' href={後端網址.登入()}>
                   <i className="facebook icon"></i>登入後才能存檔
                 </a>
