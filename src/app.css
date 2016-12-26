@@ -49,6 +49,26 @@ div.su1sia2{
   overflow-y: scroll;
 }
 
+.text.red {
+  color: #DB2828;
+}
+
+.text.orange {
+  color: #F2711C;
+}
+
+.text.yellow {
+  color: #FBBD08;
+}
+
+.text.blue {
+  color: #2185D0;
+}
+
+.text.violet {
+  color: #6435C9;
+}
+
 /*semantic ui*/
 .ui.items>.item>.content>.description {
   margin-top: 0;
