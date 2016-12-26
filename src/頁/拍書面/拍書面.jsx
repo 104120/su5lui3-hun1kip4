@@ -3,10 +3,10 @@ import React from 'react';
 import superagent from 'superagent-bluebird-promise';
 import Debug from 'debug';
 import ReactDOM from 'react-dom';
+import { Link } from 'react-router';
 import 後端網址 from '../後端網址';
 import 載入中 from '../../元素/載入中/載入中';
 import 輸入欄位 from '../../元素/輸入欄位/輸入欄位';
-import { browserHistory, Link } from 'react-router';
 
 var debug = Debug('kip4:拍書面');
 
