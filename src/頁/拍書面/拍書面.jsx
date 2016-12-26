@@ -178,9 +178,6 @@ export default class 拍書面 extends React.Component  {
             ) : (
               <div>
                 <div className="ui basic button" onClick={this.判斷返回.bind(this)}><i className="reply icon"></i>返回</div>
-                {/*<Link to={'/%E7%9C%8B%E6%9B%B8%E9%9D%A2/' + this.props.params.pian1ho7}  className="ui basic button">
-                  <i className="reply icon"></i>返回
-                </Link>*/}
                 <div className="ui submit primary disabled button"><i className="save icon"></i>存檔</div>
                 <a target='_blank' href={後端網址.登入()}>
                   <i className="facebook icon"></i>登入後才能存檔
