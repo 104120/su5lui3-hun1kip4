@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import 後端網址 from '../後端網址';
 import 載入中 from '../../元素/載入中/載入中';
 import 輸入欄位 from '../../元素/輸入欄位/輸入欄位';
+import { browserHistory, Link } from 'react-router';
 
 var debug = Debug('kip4:拍書面');
 
@@ -143,7 +144,10 @@ export default class 拍書面 extends React.Component  {
               <div className="ui submit button" onClick={this.送出.bind(this)}>存檔</div>
             ) : (
               <div>
-                <div className="ui submit disabled button">存檔</div>
+                <Link to={'/%E7%9C%8B%E6%9B%B8%E9%9D%A2/' + this.props.params.pian1ho7}  className="ui basic button">
+                  <i className="reply icon"></i>返回
+                </Link>
+                <div className="ui submit primary disabled button"><i className="pause icon"></i>存檔</div>
                 <a target='_blank' href={後端網址.登入()}>
                   <i className="facebook icon"></i>登入後才能存檔
                 </a>
