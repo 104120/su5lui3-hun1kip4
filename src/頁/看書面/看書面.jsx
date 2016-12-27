@@ -16,10 +16,10 @@ export default class 看書面 extends React.Component {
     super(props);
     this.state = {};
     superagent.get(後端網址.看書面(this.props.params.pian1ho7))
-      .then(function ({ body }) {
-        let { 資料 } = body;
-        this.setState(資料);
-      }.bind(this))
+      .then(({ body }) => {
+        this.setState(body.資料);
+        return null;
+      })
       .catch((err) => (debug(err)));
   }
 

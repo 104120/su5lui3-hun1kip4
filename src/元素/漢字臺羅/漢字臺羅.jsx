@@ -20,9 +20,10 @@ export default class 漢字臺羅 extends React.Component {
     if (parm.漢字 && parm.臺羅) {
       superagent.get(後端網址.對齊())
         .query({ 查詢腔口: '閩南語', 漢字: parm.漢字, 音標: parm.臺羅 })
-        .then(({ body }) => (
-          this.setState(body)
-        ))
+        .then(({ body }) => {
+          this.setState(body);
+          return null;
+        })
         .catch((err) => (debug(err)));
     }
   }
