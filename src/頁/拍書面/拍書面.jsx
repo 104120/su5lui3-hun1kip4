@@ -113,7 +113,7 @@ export default class 拍書面 extends React.Component  {
   }
 
   返回() {
-    window.location.href = '/看書面/' + this.props.params.pian1ho7;
+    this.props.history.push('/%E7%9C%8B%E6%9B%B8%E9%9D%A2/' + this.props.params.pian1ho7);
   }
 
   open返回提醒() {
