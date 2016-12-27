@@ -37,7 +37,7 @@ export default class 一個詞 extends React.Component {
     }
 
     return (
-      <ruby className={'taiLo' + 詞顏色}>
+      <ruby className={'taiLo ' + 詞顏色}>
         {this.props.漢字}
         <rt>{this.props.臺羅}</rt>
       </ruby>
