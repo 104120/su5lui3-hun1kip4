@@ -23,7 +23,8 @@ export default class 書寫規範 extends React.Component {
         <Modal
           isOpen={this.props.modalIsOpen}
           onRequestClose={this.props.closeModal.bind(this)}
-          style={customStyles} >
+          style={customStyles}
+          contentLabel="書寫規範" >
 
           <h2 ref="subtitle">書寫規範</h2>
             <Tabs
