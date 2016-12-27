@@ -55,10 +55,13 @@ export default class 漢字臺羅 extends React.Component {
       句 = 分詞陣列.map((分詞, i)=>(
         <一個詞 key={i} 漢字={漢字陣列[i]} 臺羅={臺羅陣列[i]}/>
        ));
-      句 = <div>{句}</div>;
+      句 = <p>{句}</p>;
     } else {
       //ajax pending
-      句 = <div>{句}</div>;
+      句 = <p>
+            <span className="text grey">{臺羅}</span><br/>
+            <span className="text grey">{漢字}</span>
+          </p>;
     }
 
     return 句;
