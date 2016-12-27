@@ -32,10 +32,12 @@ export default class 一個詞 extends React.Component {
       詞顏色 = 'text blue';
     } else if (成功) {
       詞顏色 = '';
+    } else {
+      詞顏色 = '';
     }
 
     return (
-      <ruby className={詞顏色}>
+      <ruby className={'taiLo' + 詞顏色}>
         {this.props.漢字}
         <rt>{this.props.臺羅}</rt>
       </ruby>

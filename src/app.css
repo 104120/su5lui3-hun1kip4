@@ -69,6 +69,10 @@ div.su1sia2{
   color: #6435C9;
 }
 
+.taiLo {
+  margin-right: 6px;
+}
+
 /*semantic ui*/
 .ui.items>.item>.content>.description {
   margin-top: 0;
