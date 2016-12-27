@@ -33,6 +33,7 @@ export default class 拍書面 extends React.Component  {
         if (臺羅逝數 > this.state.逝數)
           資料.逝數 = 臺羅逝數 + 10;
         this.setState(資料);
+        return null;
       }.bind(this))
       .catch((err) => (debug(err)));
   }
@@ -98,6 +99,7 @@ export default class 拍書面 extends React.Component  {
       .then((body)=> {
           alert('存檔好矣，無問題～～');
           this.setState({ 改過: false });
+          return null;
         })
       .catch(res => {
         window.open(this.props.後端網址 + 'accounts/facebook/login', '_blank');
