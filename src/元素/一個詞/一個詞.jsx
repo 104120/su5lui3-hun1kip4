@@ -33,7 +33,8 @@ export default class 一個詞 extends React.Component {
     } else if (成功) {
       詞顏色 = '';
     } else {
-      詞顏色 = '';
+      //ajax pending
+      詞顏色 = 'text grey';
     }
 
     return (
