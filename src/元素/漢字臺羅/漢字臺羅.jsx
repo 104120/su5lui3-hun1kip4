@@ -32,14 +32,14 @@ export default class 漢字臺羅 extends React.Component {
 
     let { 失敗, 分詞, 綜合標音 } = this.state;
     let { 臺羅, 漢字 } = this.props;
-    let 詞 = null;
+    let 句 = null;
 
     if (!漢字 && !臺羅) {
       //breakline
-      詞 = <br/>;
+      句 = <br/>;
     } else if (失敗 || !漢字 || !臺羅) {
       //fail
-      詞 = <對齊失敗 臺羅={臺羅} 漢字={漢字}/>;
+      句 = <對齊失敗 臺羅={臺羅} 漢字={漢字}/>;
     }else if (分詞) {
       //success
       let 分詞陣列 = [];
@@ -52,12 +52,18 @@ export default class 漢字臺羅 extends React.Component {
         臺羅陣列 = 臺羅陣列.concat(標音.臺羅閏號調.replace(/--/g, ' --').split(' '));
       });
 
-      詞 = 分詞陣列.map((分詞, i)=>(
+      句 = 分詞陣列.map((分詞, i)=>(
         <一個詞 key={i} 漢字={漢字陣列[i]} 臺羅={臺羅陣列[i]}/>
        ));
-      詞 = <div>{詞}</div>;
+      句 = <p>{句}</p>;
+    } else {
+      //ajax pending
+      句 = <p>
+            <span className="text grey">{臺羅}</span><br/>
+            <span className="text grey">{漢字}</span>
+          </p>;
     }
 
-    return 詞;
+    return 句;
   }
 }

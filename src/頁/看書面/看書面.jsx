@@ -74,7 +74,7 @@ export default class 看書面 extends React.Component {
               <input type='text' value={啥人改的} readOnly='true' disabled='true'/>
             </div>
           </div>
-          <div className="ui">
+          <div className="ui text container">
             <Link to={'/%E6%8B%8D%E6%9B%B8%E9%9D%A2/' + this.props.params.pian1ho7}>
               <i className="edit icon"></i>修改
             </Link>
