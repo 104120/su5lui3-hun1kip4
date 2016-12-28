@@ -3,7 +3,7 @@ import React from 'react';
 import superagent from 'superagent-bluebird-promise';
 import Debug from 'debug';
 import ReactDOM from 'react-dom';
-import { browserHistory, Link } from 'react-router';
+import { browserHistory } from 'react-router';
 import 後端網址 from '../後端網址';
 import 載入中 from '../../元素/載入中/載入中';
 import 輸入欄位 from '../../元素/輸入欄位/輸入欄位';
@@ -115,7 +115,7 @@ export default class 拍書面 extends React.Component  {
   }
 
   返回() {
-    this.props.history.push('/%E7%9C%8B%E6%9B%B8%E9%9D%A2/' + this.props.params.pian1ho7);
+    browserHistory.push('/%E7%9C%8B%E6%9B%B8%E9%9D%A2/' + this.props.params.pian1ho7);
   }
 
   open返回提醒() {

@@ -34,7 +34,11 @@ export default class 漢字臺羅 extends React.Component {
     let { 臺羅, 漢字 } = this.props;
     let 句 = null;
 
-    if (!漢字 && !臺羅) {
+    let 臺羅去頭尾 = 臺羅.trim();
+    let 漢字去頭尾 = 漢字.trim();
+
+    if (!臺羅 && !漢字
+      || (臺羅去頭尾.length === 0 && 漢字去頭尾.length === 0)) {
       //breakline
       句 = <br/>;
     } else if (失敗 || !漢字 || !臺羅) {
