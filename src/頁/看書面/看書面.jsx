@@ -15,6 +15,7 @@ export default class 看書面 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    // debug('%o', this.props.params.pian1ho7);
     superagent.get(後端網址.看書面(this.props.params.pian1ho7))
       .then(({ body }) => {
         this.setState(body.資料);
@@ -25,13 +26,21 @@ export default class 看書面 extends React.Component {
 
   顯示漢字臺羅() {
     let { 漢字, 臺羅 } = this.state;
-    let 漢字陣列 = 漢字.split('\n');
     let 臺羅陣列 = 臺羅.split('\n');
-    const 行數 = (漢字陣列.length > 臺羅陣列.length) ? 漢字陣列.length : 臺羅陣列.length;
+    let 漢字陣列 = 漢字.split('\n');
+    let 臺羅行數 = 臺羅陣列.length;
+    let 漢字行數 = 漢字陣列.length;
+    const 行數 = (漢字行數 > 臺羅行數) ? 漢字行數 : 臺羅行數;
+
+    臺羅陣列 = 臺羅陣列.concat(Array(行數 - 臺羅行數).fill(''));
+    漢字陣列 = 漢字陣列.concat(Array(行數 - 漢字行數).fill(''));
+    debug('%o', 臺羅陣列);
+    debug('%o', 漢字陣列);
 
     let 合併 = [];
     for (let i = 0; i < 行數; i++) {
       合併.push(<漢字臺羅 key={i} 漢字={漢字陣列[i]} 臺羅={臺羅陣列[i]}/>);
+      debug('key={%s} 漢字={%s} 臺羅={%s}', i, 漢字陣列[i], 臺羅陣列[i]);
     }
 
     return 合併;
