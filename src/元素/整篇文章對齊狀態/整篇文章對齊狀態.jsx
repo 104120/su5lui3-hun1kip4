@@ -10,12 +10,19 @@ var debug = Debug('kip4:整篇文章對齊狀態');
 export default class 整篇文章對齊狀態 extends React.Component {
 
   render () {
-    // let { 0:無對齊數量,  1:全部詞分詞, 2:全部字分詞 } = this.props.對齊狀態;
     let [無對齊數量,  全部詞分詞, 全部字分詞] = this.props.對齊狀態;
+    if (無對齊數量 == 0 && 全部字分詞.length == 0) {
+      return (
+        <div>
+          <i className="minus icon"></i>
+        </div>
+      );
+    }
+
     if (無對齊數量 != 0) {
       return (
         <div>
-          <i className="warning sign icon pink fitted"></i>{無對齊數量}
+          <i className="warning sign icon pink"></i>{無對齊數量}
         </div>
       );
     }
