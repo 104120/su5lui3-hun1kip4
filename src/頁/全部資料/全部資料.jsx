@@ -6,6 +6,8 @@ import Debug from 'debug';
 import ReactDOM from 'react-dom';
 import 後端網址 from '../後端網址';
 import 載入中 from '../../元素/載入中/載入中';
+import 整篇文章對齊狀態 from '../../元素/整篇文章對齊狀態/整篇文章對齊狀態';
+
 
 var debug = Debug('kip4:全部資料');
 
@@ -41,6 +43,9 @@ export default class 全部資料 extends React.Component {
           <td>
               {tsit8pit4.聽拍的人}
           </td>
+          <td>
+              <整篇文章對齊狀態 對齊狀態={tsit8pit4.對齊狀態} />
+          </td>
         </tr>
       ));
     return (
@@ -52,6 +57,7 @@ export default class 全部資料 extends React.Component {
             <th>文章名</th>
             <th>作者</th>
             <th>聽拍的人</th>
+            <th>對齊狀態</th>
           </tr>
         </thead>
         <tbody>
