@@ -11,7 +11,7 @@ export default class 整篇文章對齊狀態 extends React.Component {
 
   render () {
     let [攏總幾句,無對齊數量,  全部詞分詞, 全部字分詞] = this.props.對齊狀態;
-    if (攏總幾句 == 0) {
+    if (攏總幾句 <= 1) {
       return (
         <div>
           <i className="minus icon"></i>
@@ -27,13 +27,14 @@ export default class 整篇文章對齊狀態 extends React.Component {
       );
     }
 
-    // if (全部字分詞.length != 0) {
-    //   return (
-    //     <div>
-    //       <i className="warning icon red"></i>{全部字分詞.length}
-    //   </div>
-    //   );
-    // }
+    if (全部字分詞.length != 0) {
+      return (
+        <div>
+          <i className="warning icon red"></i>{全部字分詞.length}
+          {全部字分詞}
+      </div>
+      );
+    }
 
     // if (全部詞分詞.length != 0) {
     //   return (
