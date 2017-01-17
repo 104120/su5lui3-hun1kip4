@@ -10,8 +10,8 @@ var debug = Debug('kip4:整篇文章對齊狀態');
 export default class 整篇文章對齊狀態 extends React.Component {
 
   render () {
-    let [無對齊數量,  全部詞分詞, 全部字分詞] = this.props.對齊狀態;
-    if (無對齊數量 == 0 && 全部字分詞.length == 0) {
+    let [攏總幾句,無對齊數量,  全部詞分詞, 全部字分詞] = this.props.對齊狀態;
+    if (攏總幾句 == 0) {
       return (
         <div>
           <i className="minus icon"></i>
