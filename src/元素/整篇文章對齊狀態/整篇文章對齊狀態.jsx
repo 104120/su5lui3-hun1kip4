@@ -10,8 +10,8 @@ var debug = Debug('kip4:整篇文章對齊狀態');
 export default class 整篇文章對齊狀態 extends React.Component {
 
   render () {
-    let [攏總幾句,無對齊數量,  全部詞分詞, 全部字分詞] = this.props.對齊狀態;
-    if (攏總幾句 <= 1) {
+    let [攏總幾句, 無對齊數量,  全部詞分詞, 全部字分詞] = this.props.對齊狀態;
+    if (攏總幾句 <= 0) {
       return (
         <div>
           <i className="minus icon"></i>
@@ -19,21 +19,16 @@ export default class 整篇文章對齊狀態 extends React.Component {
       );
     }
 
+    let 狀態 = [];
     if (無對齊數量 != 0) {
-      return (
-        <div>
-          <i className="warning sign icon pink"></i>{無對齊數量}
-        </div>
-      );
+      狀態.push(<span><i className="warning sign icon pink"></i>{無對齊數量}</span>);
     }
+    // else{
+    //   狀態.push(<span><i className="checkmark icon green"></i></span>);
+    // }
 
     if (全部字分詞.length != 0) {
-      return (
-        <div>
-          <i className="warning icon red"></i>{全部字分詞.length}
-          {全部字分詞}
-      </div>
-      );
+      狀態.push(<span><i className="warning icon red"></i>{全部字分詞.length}</span>);
     }
 
     // if (全部詞分詞.length != 0) {
@@ -43,6 +38,14 @@ export default class 整篇文章對齊狀態 extends React.Component {
     //   </div>
     //   );
     // }
+    if (狀態.length > 0) {
+      return (
+        <div>
+          {狀態}
+      </div>
+      );
+
+    }
 
     return (
       <div>
