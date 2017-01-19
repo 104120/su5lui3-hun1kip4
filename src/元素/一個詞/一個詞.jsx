@@ -23,11 +23,15 @@ export default class 一個詞 extends React.Component {
   }
 
   render() {
-    let { 失敗, 成功 } = this.state;
+    let { 失敗, 成功, 原因 } = this.state;
     let 詞顏色 = null;
 
     if (失敗 && 失敗 === '字') {
-      詞顏色 = 'text red';
+      if (原因 == '有無建議的字') {
+        詞顏色 = 'text red';
+      } else {
+        詞顏色 = 'text orange';
+      }
     } else if (失敗 && 失敗 === '詞') {
       詞顏色 = 'text blue';
     } else if (成功) {
